@@ -1,0 +1,168 @@
+// .hotel {
+//   display: flex;
+//   flex-direction: column;
+
+//   &-image {
+//     width: 100%;
+//   }
+
+//   &-location {
+//     font-size: 16px;
+//     margin-top: 0;
+//     color: gray;
+//   }
+
+//   &-description {
+//     margin: 0;
+//     font-size: 14px;
+//     text-align: justify;
+//   }
+
+//   &-favorite {
+//     margin-right: 50px;
+//   }
+
+//   &-rating {
+//     display: inline-flex;
+//     float: right;
+//     margin-top: 5px;
+//     .mat-icon {
+//       color: orange;
+//     }
+//   }
+
+//   &-details {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: baseline;
+//     &-left {
+//       @extend .hotel-location;
+//     }
+
+//     &-right {
+//       font-weight: bold;
+//     }
+//   }
+
+//   &-icons {
+//     margin-bottom: 10px;
+//     display: flex;
+//     flex-direction: row-reverse;
+//     .mat-icon {
+//       font-size: 32px;
+//       width: 36px;
+//     }
+//   }
+
+//   &-likes-dislikes {
+//     display: flex;
+//     justify-content: space-between;
+//     margin-bottom: 10px;
+//     span {
+//       display: flex;
+//       flex-direction: row;
+//       align-items: center;
+//     }
+//     &-thumb-up {
+//       color: green;
+//     }
+//     &-thumb-down {
+//       color: red;
+//     }
+//   }
+// }
+
+.hotel {
+  display: flex;
+  flex-direction: column;
+
+  &-image {
+    width: 100%;
+  }
+
+  &-name {
+    font-weight: bold;
+    font-size: 26px;
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-location {
+    display: flex;
+    flex-direction: row;
+    * div.mat-form-field-infix {
+      display: flex !important;
+    }
+
+    font-size: 16px;
+    margin-top: 0;
+    color: gray;
+  }
+
+  &-description {
+    display: block;
+  }
+
+  &-favorite {
+    margin-right: 50px;
+  }
+
+  &-rating {
+    display: inline-flex;
+    float: right;
+    margin-top: 5px;
+    .mat-icon {
+      color: orange;
+    }
+    &-number {
+      width: 50px;
+      margin-top: -30px;
+      font-size: 24px;
+      height: 60px;
+      text-align: center;
+    }
+  }
+
+  &-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    &-left {
+      @extend .hotel-location;
+    }
+
+    &-right {
+      font-weight: bold;
+    }
+  }
+
+  &-icons {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    .mat-icon {
+      font-size: 32px;
+      width: 36px;
+    }
+  }
+
+  &-likes-dislikes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    span {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    &-thumb-up {
+      color: green;
+    }
+    &-thumb-down {
+      color: red;
+    }
+  }
+}

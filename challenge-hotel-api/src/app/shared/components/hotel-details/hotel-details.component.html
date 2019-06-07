@@ -1,0 +1,166 @@
+<ng-container *ngIf="hotelDetails$ as hotelDetails; else loadSpinner1">
+  <mat-card class="hotel">
+    <img class="hotel-image" src="{{ hotelDetails.image }}" alt="Hotel Image" />
+    <div class="hotel-content">
+      <div class="hotel-content-header">
+        <div class="hotel-info">
+          <h2 class="hotel-name" (click)="onNavigate(hotel.id)" *ngIf="!allowEdit">
+            {{ hotelDetails.name }}
+          </h2>
+          <mat-form-field class="hotel-name" *ngIf="allowEdit">
+            <input matInput [(ngModel)]="hotelDetails.name" />
+          </mat-form-field>
+
+          <div class="hotel-location">
+            <ng-container *ngIf="!allowEdit">
+              <p class="hotel-location">
+                {{ hotelDetails.city }} - {{ hotelDetails.country }}
+              </p>
+            </ng-container>
+            <ng-container *ngIf="allowEdit">
+              <mat-form-field>
+                <input
+                  class="hotel-location-city"
+                  matInput
+                  [(ngModel)]="hotelDetails.city"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  class="hotel-location-country"
+                  matInput
+                  [(ngModel)]="hotelDetails.country"
+                />
+              </mat-form-field>
+            </ng-container>
+          </div>
+        </div>
+        <div class="hotel-icons">
+          <span class="hotel-rating">
+            <mat-form-field class="hotel-rating-number" *ngIf="allowEdit">
+              <input type="number" matInput [(ngModel)]="hotelDetails.stars" />
+            </mat-form-field>
+            <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">
+              <label *ngIf="i <= hotelDetails.stars; else borderStar">
+                <mat-icon>star</mat-icon>
+              </label>
+              <ng-template #borderStar>
+                <mat-icon>star_border</mat-icon>
+              </ng-template>
+            </ng-container>
+          </span>
+
+          <button
+            *ngIf="!allowEdit"
+            mat-raised-button
+            (click)="editHotel()"
+            color="primary"
+            style="margin-right: 15px"
+          >
+            Edit hotel
+          </button>
+          <button
+            *ngIf="allowEdit"
+            mat-raised-button
+            (click)="saveHotel()"
+            color="primary"
+            style="margin-right: 15px"
+          >
+            Save changes
+          </button>
+          <button
+            *ngIf="allowEdit"
+            mat-raised-button
+            (click)="cancel()"
+            color="primary"
+            style="margin-right: 15px"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+      <p class="hotel-description" *ngIf="!allowEdit">{{ hotelDetails.description }}</p>
+      <mat-form-field class="hotel-description" *ngIf="allowEdit">
+        <textarea
+          [matTextareaAutosize]
+          matInput
+          [(ngModel)]="hotelDetails.description"
+        ></textarea>
+      </mat-form-field>
+
+      <div class="hotel-details">
+        <p class="hotel-details-left">({{ hotelDetails.date | datePipe }})</p>
+
+        <p class="hotel-details-right" *ngIf="!allowEdit">
+          {{ hotelDetails.price | currency: 'EUR' }}
+        </p>
+        <span *ngIf="allowEdit">
+          <span style="font-size: 24px; font-weight: bold">€</span>
+          <mat-form-field
+            class="hotel-details-right hotel-rating-number"
+            *ngIf="allowEdit"
+            style="width: 50px; margin-bottom: 20px"
+          >
+            <input matInput type="number" [(ngModel)]="hotelDetails.price" />
+          </mat-form-field>
+          <br />
+        </span>
+      </div>
+      <div class="hotel-likes-dislikes">
+        <span
+          >Likes: &nbsp;
+          <mat-icon class="hotel-likes-dislikes-thumb-up">thumb_up</mat-icon>
+          &nbsp;
+          <ng-container *ngIf="!allowEdit">{{ hotelDetails.likes }}</ng-container>
+          <mat-form-field class="hotel-rating-number" *ngIf="allowEdit">
+            <input type="number" matInput [(ngModel)]="hotelDetails.likes" />
+          </mat-form-field>
+        </span>
+        <span
+          >Dislikes: &nbsp;
+          <mat-icon class="hotel-likes-dislikes-thumb-down">thumb_down</mat-icon>
+          &nbsp;
+          <ng-container *ngIf="!allowEdit">{{ hotelDetails.dislikes }}</ng-container>
+
+          <mat-form-field class="hotel-rating-number" *ngIf="allowEdit">
+            <input type="number" matInput [(ngModel)]="hotelDetails.dislikes" />
+          </mat-form-field>
+        </span>
+      </div>
+      <ng-container *ngIf="allowEdit">
+        <br />
+        <mat-form-field>
+          <input
+            class="hotel-location-city"
+            matInput
+            placeholder="Enter latitude"
+            [value]="convertStringToFloat(hotelDetails.location.split(',')[0])"
+            #hotelLatitude
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            class="hotel-location-country"
+            matInput
+            placeholder="Enter longitude"
+            [value]="convertStringToFloat(hotelDetails.location.split(',')[1])"
+            #hotelLongitude
+          />
+        </mat-form-field>
+      </ng-container>
+      <agm-map
+        [latitude]="convertStringToFloat(hotelDetails.location.split(',')[0])"
+        [longitude]="convertStringToFloat(hotelDetails.location.split(',')[1])"
+        style="height: 300px"
+      >
+        <agm-marker
+          [latitude]="convertStringToFloat(hotelDetails.location.split(',')[0])"
+          [longitude]="convertStringToFloat(hotelDetails.location.split(',')[1])"
+        ></agm-marker>
+      </agm-map>
+    </div>
+  </mat-card>
+</ng-container>
+<ng-template #loadSpinner1>
+  <mat-spinner></mat-spinner>
+</ng-template>

@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+@import '~angular-notifier/styles.css';
+
+body {
+  margin: 0;
+  background: linear-gradient(#eff4f5, white);
+  background-attachment: fixed;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 20px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mat-raised-button.mat-primary {
+  background-color: #1b5581;
+}
+
+.mat-spinner.mat-progress-spinner {
+  position: fixed;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+}

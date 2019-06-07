@@ -1,0 +1,35 @@
+.mat-toolbar {
+  background: linear-gradient(white, #eff4f5);
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-button {
+  color: #1b5581 !important;
+}
+
+.active {
+  border-bottom: 2px solid #1b5581;
+  background: linear-gradient(#eff4f5, white);
+}
+
+.user-name {
+  font-size: initial;
+}
+
+@media screen and (max-width: 600px) {
+  .mat-toolbar {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #1b5581;
+
+    .right-header,
+    .left-header {
+      display: contents;
+    }
+  }
+}

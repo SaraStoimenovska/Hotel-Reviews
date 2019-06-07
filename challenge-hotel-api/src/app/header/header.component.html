@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <div class="left-header">
+    <a mat-button routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+    <a mat-button routerLink="/favorites" routerLinkActive="active">Favorites</a>
+  </div>
+
+  <div class="right-header">
+    <span class="user-name"
+      >{{ auth.getUserEmail() }}
+      <i class="material-icons" style="vertical-align: middle;">account_circle</i></span
+    >
+
+    <a mat-button (click)="auth.logout()">Logout</a>
+  </div>
+</mat-toolbar>

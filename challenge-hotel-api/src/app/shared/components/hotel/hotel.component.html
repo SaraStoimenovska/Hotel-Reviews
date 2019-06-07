@@ -1,0 +1,89 @@
+<!-- using ng-containers because they are not rendering in the DOM -->
+<mat-card class="hotel" *ngFor="let hotel of hotels$ as hotels">
+  <mat-expansion-panel [disabled]="true" #mep="matExpansionPanel" [@.disabled]="true">
+    <mat-expansion-panel-header>
+      <img class="hotel-image" [src]="getImage(hotel.image)" alt="Hotel Image" />
+      <div class="hotel-content">
+        <div class="hotel-content-header">
+          <div class="hotel-info">
+            <h2 class="hotel-name" (click)="onNavigate(hotel.id)">
+              {{ hotel.name }}
+            </h2>
+            <p class="hotel-location">{{ hotel.city }} - {{ hotel.country }}</p>
+          </div>
+          <div class="hotel-icons">
+            <button
+              class="hotel-favorite"
+              mat-icon-button
+              color="warn"
+              (click)="
+                addRemoveHotelToFavorite(
+                  hotel.id,
+                  hotel.user.includes(authService.getUserId())
+                )
+              "
+            >
+              <ng-container
+                *ngIf="hotel.user.includes(authService.getUserId()); else elseTemplate"
+              >
+                <mat-icon>favorite</mat-icon>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <mat-icon>favorite_border</mat-icon>
+              </ng-template>
+            </button>
+            <span class="hotel-rating">
+              <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">
+                <label *ngIf="i <= hotel.stars; else borderStar">
+                  <mat-icon>star</mat-icon>
+                </label>
+                <ng-template #borderStar>
+                  <mat-icon>star_border</mat-icon>
+                </ng-template>
+              </ng-container>
+            </span>
+          </div>
+        </div>
+        <p class="hotel-description">{{ hotel.description }}</p>
+        <div class="hotel-details">
+          <p class="hotel-details-left">({{ hotel.date | datePipe }})</p>
+          <div class="hotel-details-right">
+            <p class="hotel-details-right-price">
+              {{ hotel.price | currency: 'EUR' }}
+            </p>
+            <button
+              mat-raised-button
+              (click)="showReviews(hotel.id); mep.expanded = !mep.expanded"
+            >
+              <mat-icon>expand_more</mat-icon>
+              Show reviews
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+
+    <ng-container *ngIf="loadReviews">
+      <ng-container *ngIf="reviews$ as reviews">
+        <div *ngFor="let review of reviews">
+          <div class="review">
+            <mat-icon class="review-icon-person">account_circle</mat-icon>
+            <div class="review-content">
+              <div class="review-content-info">
+                <h2>{{ review.author.first_name }} {{ review.author.last_name }}</h2>
+                <ng-container *ngIf="review.positive; else negativeReview">
+                  <mat-icon class="review-icon-thumb-up">thumb_up</mat-icon>
+                </ng-container>
+                <ng-template #negativeReview>
+                  <mat-icon class="review-icon-thumb-down">thumb_down</mat-icon>
+                </ng-template>
+              </div>
+              <label>{{ review.message }}</label>
+              <p class="review-timestamp">({{ review.created_at | dateTimePipe }})</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </mat-expansion-panel>
+</mat-card>

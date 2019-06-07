@@ -1,0 +1,7 @@
+<ng-container *ngIf="hotels$; else loadSpinner">
+  <app-hotel [hotels$]="hotels$"></app-hotel>
+</ng-container>
+
+<ng-template #loadSpinner>
+  <mat-spinner></mat-spinner>
+</ng-template>

@@ -1,0 +1,20 @@
+This is the sollution of Challenge-hotel-api written in Angular 6
+
+To run it:
+Open the folder in any IDE you prefer
+from command line, navigate to challenge-hotel-api folder
+run   npm install   to instal the dependencies
+run   ng serve   to start the application
+open the application in browser (preferred Incognito because of the cache)
+http://localhost:4200/login
+
+in environment, the apiUrl is set to http://192.168.99.100:8000 because my docker machine runs on that url and port
+if you need to change it, do it here (in environment.ts file)
+
+there are some tests in Jasmine, to run it:
+ng test --code-coverage
+with --code-coverage, a folder coverage is created
+open the index.html in a browser to see which branches and statements are covered
+
+Thanks in advance
+Sara

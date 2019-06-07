@@ -1,0 +1,155 @@
+.hotel {
+  margin-top: 20px;
+  display: inline-block;
+  width: 100%;
+
+  &-image {
+    margin: 0;
+    width: 400px;
+    max-height: 400px;
+    float: left;
+  }
+
+  &-content {
+    width: calc(100% - 420px);
+    float: right;
+    &-header {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &-name {
+    display: inline-flex;
+    margin: 0 auto;
+    font-size: 22px;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  &-location {
+    font-size: 16px;
+    margin-top: 0;
+    color: gray;
+  }
+
+  &-description {
+    margin: 0;
+    font-size: 14px;
+    text-align: justify;
+  }
+
+  &-favorite {
+    margin-right: 50px;
+  }
+
+  &-rating {
+    display: inline-flex;
+    float: right;
+    margin-top: 5px;
+    .mat-icon {
+      color: orange;
+    }
+  }
+
+  &-details {
+    display: flex;
+    justify-content: space-between;
+    &-left {
+      @extend .hotel-location;
+      align-self: flex-end;
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+
+    &-right {
+      flex-direction: column;
+      align-items: flex-end;
+      display: flex;
+      &-price {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 0;
+      }
+    }
+  }
+
+  &-icons .mat-icon {
+    font-size: 32px;
+    width: 36px;
+  }
+}
+
+mat-expansion-panel.mat-expansion-panel {
+  box-shadow: none;
+}
+
+mat-expansion-panel-header.mat-expansion-panel-header {
+  height: auto !important;
+  color: initial;
+  padding: 0;
+}
+/deep/ span.mat-content {
+  overflow: visible !important;
+  display: inline !important;
+}
+
+.review {
+  margin: 20px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #a3a3a3;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  &-content {
+    margin-left: 20px;
+    &-info {
+      display: flex;
+      flex-direction: row;
+      width: 30%;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  &-icon {
+    &-person {
+      width: 70px;
+      height: 70px;
+      font-size: 70px;
+    }
+    &-thumb-up {
+      color: green;
+    }
+    &-thumb-down {
+      color: red;
+    }
+  }
+  &-timestamp {
+    color: gray;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hotel-content {
+    width: 100%;
+    display: block;
+
+    &-header {
+      display: block;
+    }
+  }
+
+  .hotel-image {
+    width: 100%;
+  }
+
+  .hotel-favorite {
+    margin-right: 0;
+  }
+}

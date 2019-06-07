@@ -1,0 +1,62 @@
+<div class="container">
+  <h1 class="text-center">Sign up</h1>
+
+  <form (submit)="register()">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        name="first_name"
+        placeholder="Enter your first name"
+        [(ngModel)]="credentials.first_name"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        name="last_name"
+        placeholder="Enter your last name"
+        [(ngModel)]="credentials.last_name"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        name="name"
+        placeholder="Enter your username"
+        [(ngModel)]="credentials.username"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        class="form-control"
+        name="email"
+        placeholder="Enter your email"
+        [(ngModel)]="credentials.email"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="Enter your password"
+        [(ngModel)]="credentials.password"
+      />
+    </mat-form-field>
+    <p class="text-right">
+      Already a member? Please <a routerLink="/login">sign in</a> instead.
+    </p>
+    <button mat-raised-button type="submit" color="primary">
+      Register!
+    </button>
+  </form>
+</div>

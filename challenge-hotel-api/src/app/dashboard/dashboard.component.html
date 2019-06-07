@@ -1,0 +1,13 @@
+<button mat-raised-button (click)="loadHotels()" color="primary">
+  Load hotels
+</button>
+
+<!-- using ng-containers because they are not rendering in the DOM -->
+<ng-container *ngIf="loading">
+  <ng-container *ngIf="hotels$; else loadSpinner">
+    <app-hotel [hotels$]="hotels$"></app-hotel>
+  </ng-container>
+  <ng-template #loadSpinner>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</ng-container>
